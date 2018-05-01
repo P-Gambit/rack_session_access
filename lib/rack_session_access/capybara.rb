@@ -1,7 +1,7 @@
 module RackSessionAccess
   module Capybara
     def set_rack_session(hash)
-      data = ::RackSessionAccess.encode(hash)
+      data = encode(hash)
 
       visit ::RackSessionAccess.edit_path
       has_content?("Update rack session")
@@ -19,6 +19,10 @@ module RackSessionAccess
 
     def get_rack_session_key(key)
       get_rack_session.fetch(key)
+    end
+
+    def encode(hash)
+      [Marshal.dump(hash)].pack('m')
     end
   end
 end
