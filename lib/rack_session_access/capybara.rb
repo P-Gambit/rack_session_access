@@ -3,7 +3,7 @@ module RackSessionAccess
     def set_rack_session(hash)
       data = encode(hash)
 
-      visit ::RackSessionAccess.edit_path
+      visit '/rack_session/edit'
       has_content?("Update rack session")
       fill_in "data", :with => data
       click_button "Update"
